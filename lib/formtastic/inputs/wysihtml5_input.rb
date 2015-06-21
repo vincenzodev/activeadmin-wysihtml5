@@ -241,6 +241,9 @@ module Formtastic
                     <label class="option"><input value="three_quarters" type="radio" name="scale" /> 75%</label>
                     <label class="option"><input value="half" type="radio" name="scale" /> 50%</label>
                     <label class="option"><input value="one_quarter" type="radio" name="scale" /> 25%</label>
+                    <label class="option"><input value="lite_15" type="radio" name="scale" /> 15%</label>
+                    <label class="option"><input value="lite_10" type="radio" name="scale" /> 10%</label>
+                    <label class="option"><input value="lite_5" type="radio" name="scale" /> 5%</label>
                   </div>
                 </div>
                 <div class="input select">

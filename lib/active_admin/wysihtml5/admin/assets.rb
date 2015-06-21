@@ -1,7 +1,7 @@
-ActiveAdmin.register Asset do
+ActiveAdmin.register ::ActiveAdmin::Wysihtml5::Asset do
 
   index as: :grid do |asset|
-    link_to(image_tag(asset.storage.thumb("100x100#").url), admin_asset_path(asset))
+    link_to(image_tag(asset.storage.thumb("100x100#").url), admin_active_admin_wysihtml5_asset_path(asset))
   end
 
   form do |f|
@@ -13,22 +13,31 @@ ActiveAdmin.register Asset do
 
   show do
     attributes_table do
-      row('Dimensions') do
+      row('Dimensions') do |asset|
         "#{asset.storage.width}px x #{asset.storage.height}px"
       end
-      row('Thumbnail') do
+      row('Thumbnail') do |asset|
         image_tag(asset.thumb_url)
       end
-      row('25%') do
+      row('5%') do |asset|
+        image_tag(asset.percentage_thumb_url(0.05))
+      end
+      row('10%') do |asset|
+        image_tag(asset.percentage_thumb_url(0.10))
+      end
+      row('15%') do |asset|
+        image_tag(asset.percentage_thumb_url(0.15))
+      end
+      row('25%') do |asset|
         image_tag(asset.percentage_thumb_url(0.25))
       end
-      row('50%') do
+      row('50%') do |asset|
         image_tag(asset.percentage_thumb_url(0.5))
       end
-      row('75%') do
+      row('75%') do |asset|
         image_tag(asset.percentage_thumb_url(0.75))
       end
-      row('Full Image') do
+      row('Full Image') do |asset|
         image_tag(asset.storage.url)
       end
     end
@@ -36,13 +45,14 @@ ActiveAdmin.register Asset do
 
   controller do
     def permitted_params
-      params.permit asset: [:storage, :retained_storage, :remove_storage, :storage_url]
+      params.permit active_admin_wysihtml5_asset: [:storage, :retained_storage, :remove_storage, :storage_url]
     end
+
     def create
       # If an app is using Rack::RawUpload, it can just use
       # params['file'] and not worry with original_filename parsing.
       if params['file']
-        @asset = Asset.new
+        @asset = ::ActiveAdmin::Wysihtml5::Asset.new
         @asset.storage = params['file']
 
         if @asset.save!
@@ -51,7 +61,7 @@ ActiveAdmin.register Asset do
           render nothing: true, status: 500 and return
         end
       elsif params['qqfile']
-        @asset = Asset.new
+        @asset = ::ActiveAdmin::Wysihtml5::Asset.new
         io = request.env['rack.input']
         # throw io
 

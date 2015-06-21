@@ -18,9 +18,8 @@ GIT
       sass-rails
 
 GIT
-  remote: git://github.com/stefanoverna/activeadmin-dragonfly.git
-  revision: 452da70b194cdda1148ed0119a58a83cafe94f4d
-  branch: master
+  remote: git://github.com/vincenzodev/activeadmin-dragonfly.git
+  revision: 611164ff0255c66a3e555b5d46dd99f0eff1f115
   specs:
     activeadmin-dragonfly (0.0.2)
       activeadmin
@@ -30,7 +29,7 @@ GIT
 PATH
   remote: .
   specs:
-    activeadmin-wysihtml5 (1.0.0)
+    activeadmin-wysihtml5 (1.1.0)
       activeadmin
       activeadmin-dragonfly
 
